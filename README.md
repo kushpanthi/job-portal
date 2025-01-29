@@ -76,6 +76,7 @@ There are three main roles in the application:
     npm install
 
 3. **Database Setup**
+   
 - Create a new MySQL database and update the `config/config.js` file with your database credentials   
 - Run the following command to create the database schema
 
@@ -90,18 +91,20 @@ There are three main roles in the application:
     npx sequelize-cli db:migrate
 
 4. **Configuration**
-Create .env file in root directory:
+
+   Create .env file in root directory:
 
     ```.env
     PORT=3000
     JWT_SECRET=your_jwt_secret_key
 
-5. **Start the development server**
+6. **Start the development server**
 
     ```bash
     npm start
 
-6. **Access the application**
+7. **Access the application**
+   
 Visit http://localhost:3000 in your browser
 
 
