@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Dashboard</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navbar */
+        nav {
+            background: white;
+            color: currentColor;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        nav .title {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        nav .nav-buttons a {
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            margin-left: 1rem;
+            background: #2d81d3;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+        nav .nav-buttons a:hover {
+            background: #1d8ac0;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        header p {
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Main Section */
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Company Grid */
+        .company-grid {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto; /* Allow horizontal scrolling if items don't fit */
+    padding: 1rem 2rem;
+    scroll-behavior: smooth; /* Smooth horizontal scrolling */
+}
+.company-grid::-webkit-scrollbar {
+    height: 8px; /* Adjust scrollbar height */
+}
+.company-grid::-webkit-scrollbar-thumb {
+    background: #888; /* Thumb color */
+    border-radius: 4px;
+}
+.company-grid::-webkit-scrollbar-track {
+    background: #444; /* Track color */
+}
+
+
+        /* Company Card */
+        .company-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .company-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+        .company-card h3 {
+            font-size: 1.4rem;
+            color: #003d5b;
+            margin-bottom: 1rem;
+        }
+        .company-card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.8rem;
+        }
+        .company-card a {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #2d81d3;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+        .company-card a:hover {
+            background: #1e87ed;
+        }
+
+        /* No Companies Message */
+        .no-companies {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #999;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #17ead9 0%, #6078ea 100%);;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="title">Dashboard</div>
+        <div class="nav-buttons">
+            <a href="/company/register">Register Company</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Welcome to Your Company Dashboard</h1>
+        <p>Manage your registered companies and job postings effortlessly.</p>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <h2 style="
+        text-align: center;
+    ">Registered Companies</h2>
+        <div class="company-grid">
+            <% if (companies && companies.length > 0) { %>
+                <% companies.forEach(company => { %>
+                    <div class="company-card">
+                        <h3><%= company.companyName %></h3>
+                        <p><strong>Address:</strong> <%= company.address %></p>
+                        <p><strong>Contact Info:</strong> <%= company.contactInfo %></p>
+                        <a href="/company/<%= company.companyId %>/jobs">Manage Jobs</a>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p class="no-companies">No companies registered yet.</p>
+            <% } %>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2025 Job Portal. All Rights Reserved.
+    </footer>
+</body>
+</html>

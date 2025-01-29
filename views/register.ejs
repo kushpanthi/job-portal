@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        /* General Styling */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(to bottom right, #4e54c8, #8f94fb);
+            color: #fff;
+            overflow: hidden;
+        }
+
+        /* Registration Container */
+        .registration-container {
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(15px);
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        /* Title and Subtitle */
+        .registration-container h1 {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #e3e6ff;
+        }
+
+        .registration-container p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #cfd3ff;
+        }
+
+        /* Input Fields */
+        .registration-container input,
+        .registration-container select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+            background: #2a2a52;
+            color: #fff;
+        }
+
+        input::placeholder {
+            color: #a7a9d5;
+        }
+
+        /* Buttons */
+        .registration-container button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+        }
+
+        .registration-container button:hover {
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            transform: scale(1.02);
+        }
+
+        /* Links */
+        .registration-container .link {
+            display: block;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #84b0ff;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .registration-container .link:hover {
+            color: #fff;
+        }
+
+        /* Checkbox */
+        .registration-container .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 10px;
+            color: #cfd3ff;
+        }
+
+        .registration-container .checkbox-container input {
+            width: auto;
+            margin: 0;
+        }
+
+        /* Background Animation */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: url('https://source.unsplash.com/random/1920x1080') no-repeat center center/cover;
+            opacity: 0.7;
+            filter: blur(8px);
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="registration-container">
+        <h1>Welcome to Our Platform</h1>
+        <p>Create your account and join us today!</p>
+        <form action="/auth/register" method="POST" enctype="multipart/form-data">
+            <input type="text" name="name" placeholder="Full Name" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <select name="role" required>
+                <option value="">Select Role</option>
+                <option value="JobSeeker">Job Seeker</option>
+                <option value="Employer">Employer</option>
+            </select>
+            <input type="file" name="validDocument">
+            <div class="checkbox-container">
+                <input type="checkbox" name="terms" required>
+                <label>I agree to the terms and conditions</label>
+            </div>
+            <button type="submit">Register Now</button>
+        </form>
+        <a href="/login" class="link">Already have an account? Sign in</a>
+    </div>
+</body>
+</html>

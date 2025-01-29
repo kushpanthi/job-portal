@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #33339f94;
+      color: #e0e0e0;
+    }
+    .navbar {
+      background-color: #ffffff66;
+    }
+    .navbar a {
+    color: black;
+    font-family: ui-monospace;
+    }
+    .navbar a:hover {
+      color: white;
+    }
+    .table {
+      background-color: #ffffff66;
+      color: black;
+    }
+    .btn {
+      color: #fff;
+    }
+    .btn:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Admin Dashboard</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#users">Users</a></li>
+          <li class="nav-item"><a class="nav-link" href="#companies">Companies</a></li>
+          <li class="nav-item"><a class="nav-link" href="#jobs">Jobs</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container mt-4">
+    <!-- Users Section -->
+    <section id="users">
+      <h2>Users</h2>
+      <table class="table  table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% users.forEach(user => { %>
+            <tr>
+              <td><%= user.name %></td>
+              <td><%= user.email %></td>
+              <td>
+                <form action="/admin/users/<%= user.id %>/edit" method="POST">
+                  <select name="role" onchange="this.form.submit()" class="form-select form-select-sm">
+                    <option value="JobSeeker" <%= user.role === 'JobSeeker' ? 'selected' : '' %>>JobSeeker</option>
+                    <option value="Employer" <%= user.role === 'Employer' ? 'selected' : '' %>>Employer</option>
+                    <option value="Admin" <%= user.role === 'Admin' ? 'selected' : '' %>>Admin</option>
+                  </select>
+                </form>
+              </td>
+              <td>
+                <form action="/admin/users/<%= user.id %>/delete" method="POST">
+                  <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Companies Section -->
+    <section id="companies" class="mt-5">
+      <h2>Companies</h2>
+      <table class="table  table-bordered">
+        <thead>
+          <tr>
+            <th>Company Name</th>
+            <th>Address</th>
+            <th>Contact Info</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% companies.forEach(company => { %>
+            <tr>
+              <td><%= company.companyName %></td>
+              <td><%= company.address %></td>
+              <td><%= company.contactInfo %></td>
+              <td>
+                <form action="/admin/companies/<%= company.companyId %>/delete" method="POST">
+                  <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Jobs Section -->
+    <section id="jobs" class="mt-5">
+      <h2>Jobs</h2>
+      <table class="table  table-bordered">
+        <thead>
+          <tr>
+            <th>Job Title</th>
+            <th>Company</th>
+            <th>Location</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% jobs.forEach(job => { %>
+            <tr>
+              <td><%= job.jobTitle %></td>
+              <td><%= job.Company.companyName %></td>
+              <td><%= job.location %></td>
+              <td>
+                <form action="/admin/jobs/<%= job.id %>/delete" method="POST">
+                  <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
