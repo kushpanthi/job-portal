@@ -105,7 +105,7 @@ There are three main roles in the application:
 
 7. **Access the application**
    
-Visit http://localhost:3000 in your browser
+   Visit http://localhost:3000 in your browser
 
 
 
